@@ -140,6 +140,7 @@
             this.btnSubmit.TabIndex = 7;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click_1);
             // 
             // lblStudentNo1
             // 
@@ -223,7 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_03LabExer.Properties.Resources.a932ea6fc1551d8bb2670716ef62c659;
-            this.ClientSize = new System.Drawing.Size(377, 338);
+            this.ClientSize = new System.Drawing.Size(400, 338);
             this.Controls.Add(this.lblContactNo1);
             this.Controls.Add(this.lblGender1);
             this.Controls.Add(this.lblBirthday1);
@@ -241,7 +242,7 @@
             this.Controls.Add(this.lblStudentNo);
             this.Name = "frmConfirmation";
             this.Text = "frmConfirmation";
-            this.Load += new System.EventHandler(this.frmConfirmation_Load);
+            this.Load += new System.EventHandler(this.FrmConfirmation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

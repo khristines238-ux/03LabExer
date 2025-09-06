@@ -16,7 +16,7 @@ namespace _03LabExer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmRegistration());
+            Application.Run(new FrmRegistration());
         }
     }
 }

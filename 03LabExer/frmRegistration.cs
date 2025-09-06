@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace _03LabExer
 {
-    public partial class frmRegistration : Form
+    public partial class FrmRegistration : Form
     {
 
        
@@ -21,7 +21,7 @@ namespace _03LabExer
         public long _StudentNo;
 
 
-        public frmRegistration()
+        public FrmRegistration()
         {
             InitializeComponent();
             
@@ -79,8 +79,8 @@ namespace _03LabExer
                 throw new FormatException("Student number must contain digits only.");
 
          
-            if (input.Length < 4 || input.Length > 10)
-                throw new IndexOutOfRangeException("Student number must be 4–10 digits.");
+            if (input.Length < 11 || input.Length > 11)
+                throw new IndexOutOfRangeException("Student number must be 11 digits.");
 
        
             long value = long.Parse(input);
@@ -91,7 +91,7 @@ namespace _03LabExer
             return (int)value;
         }
 
-        private int ContactNo(string input)
+        private long ContactNo(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
                 throw new ArgumentNullException(nameof(input), "Contact number is required.");
@@ -99,18 +99,16 @@ namespace _03LabExer
             if (!Regex.IsMatch(input, @"^\d+$"))
                 throw new FormatException("Contact number must contain digits only.");
 
-           
-            if (input.Length < 7 || input.Length > 11)
-                throw new IndexOutOfRangeException("Contact number must be 7–11 digits.");
+            // PH numbers are usually 11 digits starting with 09
+            if (input.Length != 11)
+                throw new IndexOutOfRangeException("Contact number must be exactly 11 digits.");
 
-            long value = long.Parse(input);
-            if (value > int.MaxValue)
-                throw new OverflowException("Contact number is too large for int.");
+            // Use long because int.MaxValue is too small
+            if (!long.TryParse(input, out long value))
+                throw new OverflowException("Contact number is too large.");
 
-            _ContactNo = value;
-            return (int)value;
+            return value;
         }
-
         private int Age(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -169,5 +167,48 @@ namespace _03LabExer
                 txtLastName.Focus();
             }
         }
+
+        private void btnRegister_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                StudentInformationClass.SetFullName = FullName(txtLastName.Text, txtFirstName.Text, txtMiddleInitial.Text);
+                StudentInformationClass.SetStudentNo = StudentNumber(txtStudentNo.Text);
+                StudentInformationClass.SetProgram = cbPrograms.Text;
+                StudentInformationClass.SetGender = cbGender.Text;
+                StudentInformationClass.SetContactNo = ContactNo(txtContactNo.Text);
+                StudentInformationClass.SetAge = Age(txtAge.Text);
+                StudentInformationClass.SetBirthDay = datePickerBirthday.Value.ToString("yyyy-MM-dd");
+
+                using (var frm = new frmConfirmation())
+                {
+                    frm.ShowDialog();
+                }
+            }
+
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message, "Missing value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Invalid format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (OverflowException ex)
+            {
+                MessageBox.Show(ex.Message, "Overflow / out of range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.Message, "Index/length problem", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+                txtLastName.Focus();
+            }
+        }
+
     }
 }
+

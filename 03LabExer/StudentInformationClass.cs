@@ -9,7 +9,8 @@ namespace _03LabExer
     internal class StudentInformationClass
     {
         public static int SetStudentNo { get; set; } = 0;
-        public static int SetContactNo { get; set; } = 0;
+        public static long SetContactNo { get; set; } = 0;
+
         public static string SetProgram { get; set; } = " ";
         public static string SetGender { get; set; } = " ";
         public static string SetBirthDay { get; set; } = " ";

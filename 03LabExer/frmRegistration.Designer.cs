@@ -1,6 +1,6 @@
 ﻿namespace _03LabExer
 {
-    partial class frmRegistration
+    partial class FrmRegistration
     {
         /// <summary>
         /// Required designer variable.
@@ -182,6 +182,7 @@
             this.btnRegister.TabIndex = 10;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click_1);
             // 
             // txtStudentNo
             // 
@@ -248,7 +249,7 @@
             this.datePickerBirthday.Size = new System.Drawing.Size(198, 20);
             this.datePickerBirthday.TabIndex = 19;
             // 
-            // Form1
+            // FrmRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -275,7 +276,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "FrmRegistration";
             this.Text = "OrganizationProfile";
             this.Load += new System.EventHandler(this.FrmRegistration_Load);
             this.ResumeLayout(false);
