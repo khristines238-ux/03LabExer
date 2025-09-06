@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace _03LabExer
 {
-    public partial class frmRegistration : Form
+    public partial class frmConfirmation : Form
     {
-        public frmRegistration()
+        public frmConfirmation()
         {
             InitializeComponent();
-        }
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
