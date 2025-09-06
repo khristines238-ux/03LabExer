@@ -13,18 +13,23 @@ namespace _03LabExer
 {
     public partial class frmRegistration : Form
     {
-        private string _FullName;
-        private int _Age;
-        private long _ContactNo;
-        private long _StudentNo;
+
+       
+        public string _FullName;
+        public int _Age;
+        public long _ContactNo;
+        public long _StudentNo;
+
+
         public frmRegistration()
         {
             InitializeComponent();
-
+            
             cbGender.Items.AddRange(new[] { "Male", "Female", "Prefer not to say" });
         }
 
-        private void frmRegistration_Load(object sender, EventArgs e)
+       
+        private void FrmRegistration_Load(object sender, EventArgs e)
         {
             string[] ListOfProgram = new string[]
             {
@@ -42,7 +47,7 @@ namespace _03LabExer
             }
         }
 
-       
+      
         private string FullName(string last, string first, string middleInitial)
         {
             if (string.IsNullOrWhiteSpace(last))
@@ -73,11 +78,11 @@ namespace _03LabExer
             if (!Regex.IsMatch(input, @"^\d+$"))
                 throw new FormatException("Student number must contain digits only.");
 
-            
+         
             if (input.Length < 4 || input.Length > 10)
                 throw new IndexOutOfRangeException("Student number must be 4–10 digits.");
 
-           
+       
             long value = long.Parse(input);
             if (value > int.MaxValue)
                 throw new OverflowException("Student number is too large.");
@@ -114,7 +119,7 @@ namespace _03LabExer
             if (!Regex.IsMatch(input, @"^\d+$"))
                 throw new FormatException("Age must be numeric.");
 
-         
+            
             int age = int.Parse(input);
             if (age < 1 || age > 120)
                 throw new OverflowException("Age must be between 1 and 120.");
@@ -124,7 +129,7 @@ namespace _03LabExer
         }
 
        
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void BtnRegister_Click(object sender, EventArgs e)
         {
             try
             {
@@ -141,7 +146,7 @@ namespace _03LabExer
                     frm.ShowDialog();
                 }
             }
-          
+        
             catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message, "Missing value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
